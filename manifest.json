@@ -1,0 +1,16 @@
+{
+  "name": "Al-Raed Komondose",
+  "short_name": "Komondose",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#d4af37",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/bachirsinauri-rgb/Al-Raed-System/main/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+

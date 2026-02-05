@@ -1,0 +1,16 @@
+{
+  "name": "Al-Ra'ed Komondose",
+  "short_name": "Komondose",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#00ff00",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/512/000000/00ff00?text=RK",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

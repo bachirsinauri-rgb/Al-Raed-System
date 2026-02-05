@@ -1,2 +1,118 @@
 <!DOCTYPE html>
-<html><head><title>Al-Raed</title><link rel="icon" href="icon.png"><style>body{background:#000;color:#0f0;text-align:center;font-family:sans-serif;padding-top:100px;}.box{border:2px solid #0f0;display:inline-block;padding:20px;border-radius:15px;box-shadow:0 0 15px #0f0;}</style></head><body><div class="box"><h1>Komondose</h1><p>System Online</p></div></body></html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al-Raed Komondose | نظام الرائد</title>
+    <style>
+        :root {
+            --neon-green: #00ff41;
+            --gold: #d4af37;
+            --dark-bg: #050505;
+        }
+        body {
+            background-color: var(--dark-bg);
+            color: var(--neon-green);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            border: 2px solid var(--gold);
+            box-sizing: border-box;
+        }
+        .container {
+            text-align: center;
+            border: 1px solid var(--neon-green);
+            padding: 40px;
+            background: rgba(0, 255, 65, 0.05);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+            position: relative;
+            width: 90%;
+            max-width: 600px;
+        }
+        h1 {
+            color: var(--gold);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 0 0 10px var(--gold);
+        }
+        .status-bar {
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .blink {
+            animation: blinker 1.5s linear infinite;
+        }
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        button {
+            background: transparent;
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+            padding: 15px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: var(--neon-green);
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px var(--neon-green);
+        }
+        #output-console {
+            margin-top: 25px;
+            background: #000;
+            border: 1px solid #333;
+            height: 120px;
+            overflow-y: auto;
+            text-align: right;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>KOMONDOSE</h1>
+        <div class="status-bar">
+            الحالة: <span style="color: var(--neon-green);" class="blink">● متصل بنظام الرائد</span>
+        </div>
+
+        <div class="dashboard">
+            <button onclick="runCmd('بدء تشفير القنوات...')">تأمين الاتصال</button>
+            <button onclick="runCmd('فحص بروتوكول MGX...')">فحص PWA</button>
+            <button onclick="runCmd('جاري مزامنة GitHub...')">تحديث النظام</button>
+            <button onclick="alert('نظام الرائد Komondose v1.0 جاهز')">معلومات</button>
+        </div>
+
+        <div id="output-console">
+            > تم تحميل ملفات النظام بنجاح...<br>
+            > بانتظار أوامر القائد...
+        </div>
+    </div>
+
+    <script>
+        function runCmd(msg) {
+            const consoleBox = document.getElementById('output-console');
+            const time = new Date().toLocaleTimeString();
+            consoleBox.innerHTML += `<br><span style="color:var(--gold)">[${time}]</span> > ${msg}`;
+            consoleBox.scrollTop = consoleBox.scrollHeight;
+        }
+    </script>
+</body>
+</html>

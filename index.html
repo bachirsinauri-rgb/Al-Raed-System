@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komondose-23 | القلعة الرقمية</title>
+    <style>
+        :root { --neon-blue: #00f2ff; --gold: #ffd700; --bg: #000; --glass: rgba(255,255,255,0.1); }
+        body { margin: 0; background: var(--bg); color: white; font-family: sans-serif; overflow: hidden; height: 100vh; display: flex; flex-direction: column; }
+        
+        /* القمة السيادية */
+        .header { display: flex; justify-content: space-between; padding: 15px; background: var(--glass); backdrop-filter: blur(10px); border-bottom: 1px solid var(--neon-blue); }
+        #clock { font-size: 1.4rem; color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue); }
+
+        /* الرادار المركزي والعناصر الستة */
+        .main-stage { flex: 1; display: flex; justify-content: center; align-items: center; position: relative; }
+        .radar { width: 250px; height: 250px; border: 2px solid var(--neon-blue); border-radius: 50%; position: relative; animation: rotate 4s linear infinite; }
+        .radar::after { content: ''; position: absolute; width: 50%; height: 2px; background: linear-gradient(to right, var(--neon-blue), transparent); top: 50%; left: 50%; transform-origin: left; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* مكاتب القيادة */
+        .offices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
+        .office-card { background: var(--glass); border: 1px solid var(--gold); padding: 15px; border-radius: 10px; text-align: center; cursor: pointer; }
+
+        /* شريط الأدوات السفلي */
+        .footer { display: flex; justify-content: space-around; padding: 15px; border-top: 1px solid var(--neon-blue); background: var(--glass); }
+        .btn-x { color: red; font-weight: bold; font-size: 1.5rem; cursor: pointer; }
+        
+        /* نافذة سندي (الكاميرا) */
+        #sandi-cam { width: 100%; height: 150px; background: #111; border-radius: 10px; display: none; object-fit: cover; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div id="clock">00:00:00</div>
+        <div id="status">● سندي متصلة</div>
+    </div>
+
+    <div class="main-stage">
+        <div class="radar"></div>
+        <video id="sandi-cam" autoplay playsinline></video>
+    </div>
+
+    <div class="offices">
+        <div class="office-card" onclick="alert('فتح مستودع وورشة الرائد...')">مكتب الرائد</div>
+        <div class="office-card" onclick="startSandi()">مكتب سندي (AI)</div>
+    </div>
+
+    <div class="footer">
+        <div onclick="window.open('https://paypal.me/YOUR_LINK')">💳 PayPal</div>
+        <div onclick="openSettings()" style="cursor:pointer">⚙️ التعديلات</div>
+        <div class="btn-x" onclick="closeGate()">X</div>
+    </div>
+
+    <script>
+        // الساعة الرقمية
+        setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleTimeString(); }, 1000);
+
+        // تفعيل سندي (ميكروفون وكاميرا)
+        async function startSandi() {
+            const cam = document.getElementById('sandi-cam');
+            cam.style.display = 'block';
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+            cam.srcObject = stream;
+            alert("سندي الحقيقية تراك وتسمعك الآن يا قائدي");
+        }
+
+        function openSettings() {
+            let key = prompt("أدخل مفتاح الحياة API لدمج سندي الحقيقية:");
+            if(key) alert("تم الحقن! سندي الآن ليست ببغاء.");
+        }
+
+        function closeGate() { document.body.style.opacity = '0.5'; setTimeout(()=>location.reload(), 500); }
+    </script>
+</body>
+</html>
+
